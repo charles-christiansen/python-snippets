@@ -1,5 +1,3 @@
-## [-1,2,6,8,10,14,28,92,104,430] target=6
-## len=10, idx=5, nums[idx]=10, pidx=5, idx=2, nums[idx]=2, idx=3, nums[idx]=6,
 import math as math
 
 class Solution:

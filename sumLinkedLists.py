@@ -17,16 +17,13 @@ class Solution:
         o1=l1
         while o1 != None:
             n1+=o1.val * 10**e1
-            print("n1 is now "+str(n1))
             e1+=1
             o1=o1.next
-        print("===============================")
         n2=0
         e2=0
         o2=l2
         while o2 != None:
             n2+=o2.val * 10**e2
-            print("n2 is now "+str(n2))
             e2+=1
             o2=o2.next
         sum=n1+n2
