@@ -1,3 +1,10 @@
+## Final Destination
+## LeetCode: https://leetcode.com/problems/destination-city/
+## Given a list of lists of origins and destinations,
+## Return the final destination.
+## The final destination is the one which does not appear
+## in any list as an origin.
+## The lists are of the format ["Origin","Destination"]
 class Solution:
     def destCity(self, paths: list[list[str]]) -> str:
         dcounts = {}
@@ -11,5 +18,8 @@ class Solution:
         return None
 
 s = Solution()
+# Destintation should be A
 print(s.destCity([["B","C"],["D","B"],["C","A"]]))
+
+# Destination should be Sao Paulo
 print(s.destCity([["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]))

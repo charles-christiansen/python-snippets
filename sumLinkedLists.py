@@ -1,4 +1,13 @@
+## Add two numbers from linked lists
+## LeetCode: https://leetcode.com/problems/add-two-numbers/
+## Given 2 linked lists of numbers with digits in reverse order,
+## return a linked list containing the sum of the two numbers
+## in the same format.
+## Example: if the two input lists were 4->5->6 and 2->2->7,
+## the returned list should be 6->7->3->1
+
 # Definition for singly-linked list.
+# __init__ provided by LeetCode with the problem.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -7,6 +16,8 @@ class ListNode:
         v=self
         s=""
         while(v != None):
+            if len(s)>0:
+                s+="->"
             s=s+str(v.val)
             v=v.next
         return s
@@ -35,7 +46,11 @@ class Solution:
             nnode=ln
         return ln
 
+s=Solution()
 l1=ListNode(2,ListNode(4,ListNode(3,None)))
 l2=ListNode(5,ListNode(6,ListNode(4,None)))
-s=Solution()
 print(s.addTwoNumbers(l1,l2).toStr())
+
+l3=ListNode(4,ListNode(5,ListNode(6,None)))
+l4=ListNode(2,ListNode(2,ListNode(7,None)))
+print(s.addTwoNumbers(l3,l4).toStr())
