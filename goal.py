@@ -8,5 +8,5 @@ class Solution:
 
 s = Solution()
 
-# Should return the string "ooalGGGalo"
+# return the string "ooalGGGalo"
 print(s.interpret('()()(al)GGG(al)()'))
