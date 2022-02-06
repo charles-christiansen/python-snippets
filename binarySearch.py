@@ -3,10 +3,10 @@
 ## Given a sorted list of numbers and a target,
 ## Return the index of the target in the list.
 ## Return -1 if the target doesn't appear in the list.
-import math as math
-
+import math
+from typing import List
 class Solution:
-    def search(self, nums: list[int], target: int) -> int:
+    def search(self, nums: List[int], target: int) -> int:
         lower=0
         upper=len(nums)-1
         while(upper >= lower):

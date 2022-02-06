@@ -5,8 +5,9 @@
 ## The final destination is the one which does not appear
 ## in any list as an origin.
 ## The lists are of the format ["Origin","Destination"]
+from typing import List
 class Solution:
-    def destCity(self, paths: list[list[str]]) -> str:
+    def destCity(self, paths: List[list[str]]) -> str:
         dcounts = {}
         for path in paths:
             cityA, cityB = path

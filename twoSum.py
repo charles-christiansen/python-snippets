@@ -4,8 +4,9 @@
 ## containing the indices of the two numbers in the list which
 ## add up to the target number. Try to do this in less
 ## than O(n**2) time complexity
+from typing import List
 class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
             n1=nums[i]
             n2=target-n1

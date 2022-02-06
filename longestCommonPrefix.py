@@ -3,8 +3,9 @@
 ## Given a list of words, find the longest common prefix
 ## of all words in the list. Return empty string if there is
 ## no common prefix.
+from typing import List
 class Solution:
-    def longestCommonPrefix(self, strs: list[str]) -> str:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
         strs.sort(key=len)
         n=len(strs)-1
         flat=",".join(strs)
