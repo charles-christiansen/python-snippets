@@ -38,6 +38,7 @@ class Powerball:
         "5p": 0,
         "5pd": 0
     }
+    # User can specify a Quick Pick instead of choosing numbers
     qp=False
 
     def pickBall(self,isPowerball):
