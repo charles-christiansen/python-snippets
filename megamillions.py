@@ -1,54 +1,54 @@
 import random
 import sys
 
-class Powerball:
+class MegaMillions:
     drawings=[]
-    powers=[]
-    numDraws=15600
-    chosenNums=[0]*69
-    chosenPBs=[0]*26
+    megas=[]
+    numDraws=104
+    chosenNums=[0]*70
+    chosenMegas=[0]*25
     mostFrequent=[]
     mostFrequentCount=0
     mostFrequentPct="0.0%"
-    mostFrequentPB=[]
-    mostFrequentPBCount=0
-    mostFrequentPBPct="0.0%"
+    mostFrequentMega=[]
+    mostFrequentMegaCount=0
+    mostFrequentMegaPct="0.0%"
     leastFrequent=[]
     leastFrequentCount=156001
     leastFrequentPct="0.0%"
-    leastFrequentPB=[]
-    leastFrequentPBCount=156001
-    leastFrequentPBPct="0.0%"
+    leastFrequentMega=[]
+    leastFrequentMegaCount=156001
+    leastFrequentMegaPct="0.0%"
     spend=numDraws*2
     winnings=0
     totalWins=0
     totalWinPct="0.0%"
     playerPick=[]
-    playerPower=0
+    playerMega=0
     wins={
-        "0p": 0,
-        "0pd": 0,
-        "1p": 0,
-        "1pd": 0,
-        "2p": 0,
-        "2pd": 0,
+        "0m": 0,
+        "0md": 0,
+        "1m": 0,
+        "1md": 0,
+        "2m": 0,
+        "2md": 0,
         "3": 0,
         "3d": 0,
-        "3p": 0,
-        "3pd": 0,
+        "3m": 0,
+        "3md": 0,
         "4": 0,
         "4d": 0,
-        "4p": 0,
-        "4pd": 0,
+        "4m": 0,
+        "4md": 0,
         "5": 0,
         "5d": 0,
-        "5p": 0,
-        "5pd": 0
+        "5m": 0,
+        "5md": 0
     }
     qp=False
 
-    def pickBall(self,isPowerball):
-        topRange=26 if isPowerball else 69
+    def pickBall(self,isMegaBall):
+        topRange=25 if isMegaBall else 70
         n=random.randint(1,topRange)
         return n
 
@@ -63,8 +63,8 @@ class Powerball:
         nums.sort()
         self.drawings.append(nums)
         pb=self.pickBall(True)
-        self.powers.append(pb)
-        self.chosenPBs[pb-1]+=1
+        self.megas.append(pb)
+        self.chosenMegas[pb-1]+=1
 
     def evaluateDrawings(self):
         idx=0
@@ -72,38 +72,38 @@ class Powerball:
             win=False
             matches=len(set(drawing)&set(self.playerPick))
             matchStr=str(matches)
-            powerMatch=self.powers[idx]==self.playerPower
+            powerMatch=self.megas[idx]==self.playerMega
             if powerMatch:
-                matchStr+="p"
+                matchStr+="m"
                 self.wins[matchStr]+=1
                 win=True
             elif not powerMatch and matches>=3:
                 self.wins[str(matches)]+=1
                 win=True
             if matches >= 4:
-                print(matchStr + "  ***  " + " ".join(str(d) for d in drawing) + "     " + str(self.powers[idx]))
+                print(matchStr + "  ***  " + " ".join(str(d) for d in drawing) + "     " + str(self.megas[idx]))
             if win:
                 matchStrWin=matchStr+"d"
                 amt=0
                 match matchStrWin:
-                    case "0pd":
+                    case "0md":
+                        amt=2
+                    case "1md":
                         amt=4
-                    case "1pd":
-                        amt=4
-                    case "2pd":
-                        amt=7
+                    case "2md":
+                        amt=10
                     case "3d":
-                        amt=7
-                    case "3pd":
-                        amt=100
+                        amt=10
+                    case "3md":
+                        amt=200
                     case "4d":
-                        amt=100
-                    case "4pd":
-                        amt=50000
+                        amt=500
+                    case "4md":
+                        amt=10000
                     case "5d":
                         amt=1000000
-                    case "5pd":
-                        amt=875000000
+                    case "5md":
+                        amt=640000000
                 self.wins[matchStrWin]+=amt
                 self.winnings+=amt
                 self.totalWins+=1
@@ -126,21 +126,21 @@ class Powerball:
         self.mostFrequentPct=str(self.mostFrequentCount / self.numDraws * 100) + "%"
         self.leastFrequentPct=str(self.leastFrequentCount / self.numDraws * 100) + "%"
 
-        for i in range(len(self.chosenPBs)):
-            if self.chosenPBs[i] > self.mostFrequentPBCount:
-                self.mostFrequentPB=[i+1]
-                self.mostFrequentPBCount=self.chosenPBs[i]
-            elif self.chosenPBs[i] == self.mostFrequentPBCount:
-                self.mostFrequentPB.append(i+1)
+        for i in range(len(self.chosenMegas)):
+            if self.chosenMegas[i] > self.mostFrequentMegaCount:
+                self.mostFrequentMega=[i+1]
+                self.mostFrequentMegaCount=self.chosenMegas[i]
+            elif self.chosenMegas[i] == self.mostFrequentMegaCount:
+                self.mostFrequentMega.append(i+1)
 
-            if self.chosenPBs[i] < self.leastFrequentPBCount:
-                self.leastFrequentPB=[i+1]
-                self.leastFrequentPBCount=self.chosenPBs[i]
-            elif self.chosenPBs[i] == self.leastFrequentPBCount:
-                self.leastFrequentPB.append(i+1)
+            if self.chosenMegas[i] < self.leastFrequentMegaCount:
+                self.leastFrequentMega=[i+1]
+                self.leastFrequentMegaCount=self.chosenMegas[i]
+            elif self.chosenMegas[i] == self.leastFrequentMegaCount:
+                self.leastFrequentMega.append(i+1)
 
-        self.mostFrequentPBPct=str(self.mostFrequentPBCount / self.numDraws * 100) + "%"
-        self.leastFrequentPBPct=str(self.leastFrequentPBCount / self.numDraws * 100) + "%"
+        self.mostFrequentMegaPct=str(self.mostFrequentMegaCount / self.numDraws * 100) + "%"
+        self.leastFrequentMegaPct=str(self.leastFrequentMegaCount / self.numDraws * 100) + "%"
 
     def debug(self):
         for i in range(len(self.chosenNums)):
@@ -150,7 +150,7 @@ class Powerball:
         if self.qp:
             pp="qp"
         else:
-            print("Enter FIVE numbers (1-69) separated by a space, or enter qp for a quick pick")
+            print("Enter FIVE numbers (1-70) separated by a space, or enter qp for a quick pick")
             pp=input()
         if pp=="qp":
             nums=[]
@@ -162,7 +162,7 @@ class Powerball:
 
             nums.sort()
             self.playerPick=nums
-            self.playerPower=random.randint(1,26)
+            self.playerMega=self.pickBall(True)
         else:
             try:
                 self.playerPick=pp.split(" ")
@@ -178,25 +178,25 @@ class Powerball:
 
         return True
 
-    def getPlayerPowerball(self):
-        print("Enter your Powerball number (1-26)")
+    def getPlayerMegaMillions(self):
+        print("Enter your MegaMillions number (1-25)")
         try:
-            self.playerPower=int(input())
+            self.playerMega=int(input())
             if not self.validateInput(True):
-                print("Invalid Powerball selection, try again")
+                print("Invalid MegaMillions selection, try again")
                 return False
         except Exception as e:
             print(e)
-            print("Invalid Powerball selection, try again")
+            print("Invalid MegaMillions selection, try again")
             return False
 
         return True
 
-    def validateInput(self,isPowerball):
-        if isPowerball:
+    def validateInput(self,isMegaBall):
+        if isMegaBall:
             try:
-                x=self.playerPower + 0
-                return x >= 1 and x <= 26
+                x=self.playerMega + 0
+                return x >= 1 and x <= 25
             except:
                 return False
         else:
@@ -205,49 +205,49 @@ class Powerball:
             if not all(n.isdigit() for n in self.playerPick):
                 return False
             for n in self.playerPick:
-                if int(n) < 1 or int(n) > 69:
+                if int(n) < 1 or int(n) > 70:
                     return False
             return True
 
     def printDraws(self):
-        print(" ".join(str(n) for n in self.playerPick)+"     "+str(self.playerPower))
+        print(" ".join(str(n) for n in self.playerPick)+"     "+str(self.playerMega))
         print("\n\n")
 
-pb=Powerball()
+mm=MegaMillions()
 if len(sys.argv) >= 2 and sys.argv[1]=="qp":
-    pb.qp=True
+    mm.qp=True
 
 gotPN=False
 while not gotPN:
-    gotPN=pb.getPlayerNumbers()
+    gotPN=mm.getPlayerNumbers()
 
-if pb.playerPower==0:
-    gotPPB=False
-    while not gotPPB:
-        gotPPB=pb.getPlayerPowerball()
+if mm.playerMega==0:
+    gotPMega=False
+    while not gotPMega:
+        gotPMega=mm.getPlayerMegaMillions()
 
-for i in range(pb.numDraws):
-    pb.doDrawing()
-pb.printDraws()
-pb.evaluateDrawings()
+for i in range(mm.numDraws):
+    mm.doDrawing()
+mm.printDraws()
+mm.evaluateDrawings()
 
-for k,v in pb.wins.items():
+for k,v in mm.wins.items():
     if v > 0:
         print(k + ": " + str(v))
 
-print ("\nYOU WON SOMETHING IN " + str(pb.totalWins) + " OUT OF " + str(pb.numDraws) + " DRAWS (" + pb.totalWinPct + ")\n")
-print("Most chosen number(s) was/were " + ",".join(str(mf) for mf in pb.mostFrequent) + ", picked in " + str(pb.mostFrequentCount) + " (" + pb.mostFrequentPct + ") draws")
-print("Least chosen number(s) was/were " + ",".join(str(lf) for lf in pb.leastFrequent) + ", picked in " + str(pb.leastFrequentCount) + " (" + pb.leastFrequentPct + ") draws")
+print ("\nYOU WON SOMETHING IN " + str(mm.totalWins) + " OUT OF " + str(mm.numDraws) + " DRAWS (" + mm.totalWinPct + ")\n")
+print("Most chosen number(s) was/were " + ",".join(str(mf) for mf in mm.mostFrequent) + ", picked in " + str(mm.mostFrequentCount) + " (" + mm.mostFrequentPct + ") draws")
+print("Least chosen number(s) was/were " + ",".join(str(lf) for lf in mm.leastFrequent) + ", picked in " + str(mm.leastFrequentCount) + " (" + mm.leastFrequentPct + ") draws")
 
-print("Most chosen Powerball(s) was/were " + ",".join(str(mf) for mf in pb.mostFrequentPB) + ", picked in " + str(pb.mostFrequentPBCount) + " (" + pb.mostFrequentPBPct + ") draws")
-print("Least chosen Powerball(s) was/were " + ",".join(str(lf) for lf in pb.leastFrequentPB) + ", picked in " + str(pb.leastFrequentPBCount) + " (" + pb.leastFrequentPBPct + ") draws")
+print("Most chosen MegaMillions(s) was/were " + ",".join(str(mf) for mf in mm.mostFrequentMega) + ", picked in " + str(mm.mostFrequentMegaCount) + " (" + mm.mostFrequentMegaPct + ") draws")
+print("Least chosen MegaMillions(s) was/were " + ",".join(str(lf) for lf in mm.leastFrequentMega) + ", picked in " + str(mm.leastFrequentMegaCount) + " (" + mm.leastFrequentMegaPct + ") draws")
 
-print("SPENT:       $" + str(pb.spend))
-print("WINNINGS:    $" + str(pb.winnings))
-if pb.winnings > pb.spend:
-    print("YOU WON:     $" + str(pb.winnings - pb.spend))
+print("SPENT:       $" + str(mm.spend))
+print("WINNINGS:    $" + str(mm.winnings))
+if mm.winnings > mm.spend:
+    print("YOU WON:     $" + str(mm.winnings - mm.spend))
 else:
-    print("YOU LOST:    $" + str(pb.spend - pb.winnings))
+    print("YOU LOST:    $" + str(mm.spend - mm.winnings))
 
-# pb.debug()
+# mm.debug()
 
